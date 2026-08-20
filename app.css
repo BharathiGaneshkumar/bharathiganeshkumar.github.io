@@ -144,18 +144,30 @@ body:not(.on-landing):not(.scene-animating) .site-nav {
 }
 
 @media (max-width: 720px) {
+  .site-nav {
+    top: 0.6rem;
+  }
   .nav-pill {
-    gap: 0.7rem;
-    padding: 0.5rem 0.5rem 0.5rem 0.9rem;
+    gap: clamp(0.35rem, 2vw, 0.6rem);
+    padding: clamp(0.3rem, 1.2vw, 0.45rem) clamp(0.35rem, 1.5vw, 0.5rem) clamp(0.3rem, 1.2vw, 0.45rem) clamp(0.6rem, 2vw, 0.8rem);
+  }
+  .nav-pill::before {
+    width: 6px;
+    height: 6px;
   }
   .nav-links {
-    gap: 0.7rem;
-    flex-wrap: wrap;
-    max-width: calc(100vw - 3rem);
+    gap: clamp(0.4rem, 1.6vw, 0.65rem);
+    flex-wrap: nowrap;
+    max-width: calc(100vw - 2rem);
   }
-  .nav-links a { font-size: 0.75rem; }
+  .nav-links a {
+    font-size: clamp(0.6rem, 2.4vw, 0.78rem);
+    white-space: nowrap;
+  }
+  .nav-links .nav-contact {
+    padding: 0.28rem 0.65rem;
+  }
 }
-
 .world {
   position: relative;
   width: 100vw;

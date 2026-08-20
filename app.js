@@ -1374,3 +1374,18 @@ projectStampHTML = function (p) {
          onerror="this.parentElement.innerHTML=placeholderStampSVG(); this.parentElement.classList.remove('shimmer-active');" />
   </div>`;
 };
+// First tap anywhere on the page requests fullscreen (must be a real user
+// gesture — browsers block fullscreen requests otherwise). Fires once,
+// then gets out of the way so it never interferes with hotspot/nav taps.
+let fullscreenTried = false;
+document.addEventListener(
+  "click",
+  () => {
+    if (fullscreenTried || document.fullscreenElement) return;
+    fullscreenTried = true;
+    document.documentElement.requestFullscreen?.().catch(() => {
+      // silently ignore if the browser refuses — not critical
+    });
+  },
+  { once: true }
+);
