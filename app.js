@@ -1374,18 +1374,48 @@ projectStampHTML = function (p) {
          onerror="this.parentElement.innerHTML=placeholderStampSVG(); this.parentElement.classList.remove('shimmer-active');" />
   </div>`;
 };
-// First tap anywhere on the page requests fullscreen (must be a real user
-// gesture — browsers block fullscreen requests otherwise). Fires once,
-// then gets out of the way so it never interferes with hotspot/nav taps.
+// ---------- Fullscreen: persistent button + one-time cue ----------
+const fsBtn = document.getElementById("fullscreenBtn");
+const fsCue = document.getElementById("fsCue");
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen?.().catch(() => {});
+  } else {
+    document.exitFullscreen?.();
+  }
+}
+
+fsBtn?.addEventListener("click", (e) => {
+  e.stopPropagation(); // don't also trigger the tap-anywhere listener below
+  toggleFullscreen();
+  dismissFsCue();
+});
+
+function dismissFsCue() {
+  fsCue?.classList.remove("fs-cue-visible");
+}
+
+// Show the cue once per browser, a couple seconds after landing, then
+// auto-hide it after a few seconds either way.
+if (fsCue && !localStorage.getItem("fsCueShown")) {
+  window.setTimeout(() => {
+    fsCue.classList.add("fs-cue-visible");
+    localStorage.setItem("fsCueShown", "1");
+    window.setTimeout(dismissFsCue, 4000);
+  }, 2000);
+}
+
+// First tap anywhere else on the page also requests fullscreen, as a
+// bonus convenience — the dedicated button above remains the reliable,
+// always-visible way to do it on every page.
 let fullscreenTried = false;
 document.addEventListener(
   "click",
   () => {
     if (fullscreenTried || document.fullscreenElement) return;
     fullscreenTried = true;
-    document.documentElement.requestFullscreen?.().catch(() => {
-      // silently ignore if the browser refuses — not critical
-    });
+    toggleFullscreen();
   },
   { once: true }
 );
