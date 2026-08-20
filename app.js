@@ -5,6 +5,25 @@
 // on the landing image, so it travels bottom-left; etc.), computed from
 // each hotspot's centroid. Magnitude is fixed at 1.6 world-widths for a
 // longer, more deliberate travel than a plain 1-scene hop.
+// Chrome only auto-hides its address bar in response to an actual
+// document scroll event — but our html/body are overflow:hidden (all
+// scrolling happens inside .scene divs instead), so Chrome never sees
+// a scroll and the address bar sits there permanently on mobile.
+// This briefly unlocks real page scrolling just long enough to nudge
+// it by 1px (which is enough to trigger the collapse), then locks
+// scrolling back to normal immediately after — invisible to the user.
+function nudgeAddressBar() {
+  const html = document.documentElement;
+  html.style.overflow = "auto";
+  document.body.style.overflow = "auto";
+  window.scrollTo(0, 1);
+  window.setTimeout(() => {
+    window.scrollTo(0, 0);
+    html.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  }, 300);
+}
+window.addEventListener("load", () => window.setTimeout(nudgeAddressBar, 250));
 const SCENES = {
   landing: { sx: 0, sy: 0 },
   education: { sx: -1.6, sy: 1.6 },   // bottom-left
