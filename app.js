@@ -1307,3 +1307,51 @@ function runSceneTour(name) {
     start();
   }
 }
+// ---------- Landing hero loading screen ----------
+const heroBgImg = document.querySelector(".bg-img");
+if (heroBgImg) {
+  document.body.classList.add("site-loading");
+  if (heroBgImg.complete) {
+    document.body.classList.remove("site-loading");
+  } else {
+    heroBgImg.addEventListener("load", () => document.body.classList.remove("site-loading"), { once: true });
+    // safety net in case load event is missed
+    window.setTimeout(() => document.body.classList.remove("site-loading"), 4000);
+  }
+}
+
+// ---------- Shimmer placeholder for lazy-loaded images ----------
+// Wraps each lazy image in a positioned container so the shimmer
+// background can sit exactly behind it, then fades the shimmer out
+// and the image in once it's actually loaded.
+document.querySelectorAll("img[loading='lazy']").forEach((img) => {
+  const wrap = document.createElement("span");
+  wrap.className = "img-shimmer-wrap shimmer-active";
+  img.parentNode.insertBefore(wrap, img);
+  wrap.appendChild(img);
+  img.classList.add("img-loading");
+
+  function reveal() {
+    img.classList.remove("img-loading");
+    wrap.classList.remove("shimmer-active");
+  }
+  if (img.complete) {
+    reveal();
+  } else {
+    img.addEventListener("load", reveal, { once: true });
+    img.addEventListener("error", reveal, { once: true });
+  }
+});
+
+// ---------- Same shimmer treatment for dynamically-created project stamps ----------
+// projectStampHTML() generates <img> tags via innerHTML, so they exist
+// outside the querySelectorAll pass above (which runs once on page load,
+// before Projects has rendered). Hook into the existing render function instead.
+const _origProjectStampHTML = projectStampHTML;
+projectStampHTML = function (p) {
+  return `<div class="stamp-frame img-shimmer-wrap shimmer-active">
+    <img class="img-loading" src="${p.stamp}" alt="${p.title} stamp illustration"
+         onload="this.classList.remove('img-loading'); this.parentElement.classList.remove('shimmer-active');"
+         onerror="this.parentElement.innerHTML=placeholderStampSVG(); this.parentElement.classList.remove('shimmer-active');" />
+  </div>`;
+};

@@ -2349,3 +2349,44 @@ body.on-landing .landing-top-right { opacity: 1; pointer-events: auto; }
 @media (hover: hover) {
   .project-card:hover::after { opacity: 0.9; }
 }
+/* ================== IMAGE LOADING STATES ================== */
+img[loading="lazy"] {
+  transition: opacity 0.35s ease;
+}
+img.img-loading {
+  opacity: 0;
+}
+.img-shimmer-wrap {
+  position: relative;
+  display: inline-block;
+}
+.img-shimmer-wrap.shimmer-active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--cream) 25%, var(--tan) 50%, var(--cream) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: inherit;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Full-page loading screen shown until the landing hero image is ready */
+body.site-loading::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 999;
+  background: var(--cream);
+}
+body.site-loading::after {
+  content: "loading...";
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: var(--text-body);
+}
