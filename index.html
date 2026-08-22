@@ -536,15 +536,6 @@
 
   <div class="exp-dialog" id="expDialog" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="exp-dialog-actions">
-      <a class="exp-cert-btn" id="exp-cert-sap"
-        href="https://drive.google.com/file/d/16181syJ7C9-yPmSQxX0mk6100lumvBEh/view?usp=sharing" target="_blank"
-        rel="noopener" data-stop="sap">Completion Certificate</a>
-      <a class="exp-cert-btn" id="exp-cert-oracle-intern"
-        href="https://drive.google.com/file/d/1KIZgrEl6sX0D6W1s-VxTOPO-PliBIEVn/view?usp=sharing" target="_blank"
-        rel="noopener" data-stop="oracle-intern">Completion Certificate</a>
-      <a class="exp-cert-btn" id="exp-cert-oracle-fulltime"
-        href="https://drive.google.com/file/d/1LsSKpQpgov75k9r5oypaHZnZPRKznDWW/view?usp=sharing" target="_blank"
-        rel="noopener" data-stop="oracle-fulltime">Experience Letter</a>
       <button class="exp-dialog-close" id="expDialogClose" aria-label="Close">&times;</button>
     </div>
 
@@ -563,15 +554,12 @@
       </div>
 
       <ul class="dialog-bullets">
-        <li>Built the digital workflow for SAP's <strong>Care for Life fund</strong>, an employee-backed program that
-          provides financial support to a deceased employee's family, <strong>replacing a fully manual application,
-            verification, and disbursement process</strong></li>
-        <li>Developed as a <strong>microservices application on SAP BTP</strong>, owning both the frontend and backend
-          independently</li>
-        <li>Used <strong>Micro Frontend architecture with Turbo Repo</strong> to keep the codebase modular as more teams
-          integrate with it</li>
-        <li>Built the backend in <strong>Node.js and Express.js</strong>, with <strong>TypeScript</strong> running
-          across both layers</li>
+        <li>Contributed to a <strong>microservices application on SAP BTP</strong> as a Software Engineering
+          Intern, working across both frontend and backend</li>
+        <li>Used <strong>Micro Frontend architecture with Turbo Repo</strong> to keep the codebase modular
+          across teams</li>
+        <li>Built the backend in <strong>Node.js and Express.js</strong>, with <strong>TypeScript</strong>
+          running across both layers</li>
       </ul>
     </div>
 
@@ -662,68 +650,46 @@
         <span class="tech-tag">Jira</span>
       </div>
 
-      <p class="timeline-coursework">
-        Continued working on the Infrastructure Industries Global Industry Unit (IGIU), <a
-          href="https://www.oracle.com/in/utilities/" target="_blank" rel="noopener">Energy and Water Division</a>, on
+<p class="timeline-coursework">
+        Continued working on the Infrastructure Industries Global Industry Unit (IGIU), 
+          <a href="https://www.oracle.com/in/utilities/" target="_blank" rel="noopener">Energy and Water Division</a>, on
         the <a href="https://docs.oracle.com/en/industries/utilities/framework/264/sdk-dev-guide/index.html"
           target="_blank" rel="noopener">Oracle Utilities Application Framework (OUAF)</a> Platform team, a Java-based
         development platform used to build and manage enterprise utility solutions such as customer care, billing, and
         meter data management.
       </p>
 
-      <p class="card-section-head">JULIA</p>
+      <p class="card-section-head">Internal infrastructure migration</p>
       <ul class="dialog-bullets">
-        <li>JULIA is an internal <strong>Oracle APEX</strong> application that manages OUAF's cloud release lifecycle,
-          used by <strong>6+ stakeholder groups</strong> including developers, QA, DevOps, and customer service</li>
-        <li>Tracks each customer's current OUAF version and <strong>automates the upgrade process end to end</strong>,
-          generating the exact instructions the platform's release engine executes on schedule</li>
-        <li>
-          <p class="card-section-head">Independent setup migration</p>
-          <ul class="dialog-bullets">
-            <li>JULIA originally ran on a <strong>shared database owned by another team</strong>, whose resource
-              contention <strong>regularly crashed dependent applications</strong> and left no disaster recovery in
-              place</li>
-            <li>Since the team had no autonomy over that shared infrastructure, <strong>migrated JULIA onto its own
-                independent database, ORDS server, and APEX workspace</strong>, then rebuilt its real-time data pipeline
-              and CI/CD process around the new environment</li>
-          </ul>
-        </li>
-        <li>
-          <p class="card-section-head">My role</p>
-          <ul class="dialog-bullets">
-            <li><strong>Sole contributor</strong> on the migration, working across the full OUAF release lifecycle since
-              the redesign touched every stage of it, from customer version tracking to the final upgrade trigger</li>
-            <li>Synced real-time data from the old database using <strong>database links and materialized
-                views</strong>, with a <strong>scheduled DBMS_JOB automating the refresh daily</strong></li>
-            <li>Added a <strong>staging table with a MERGE step</strong> to keep JULIA's row-population trigger firing
-              correctly once the source moved to a materialized view</li>
-            <li><strong>Provisioned three environments</strong>, development, QA, and production, from scratch,
-              coordinating directly with multiple teams and database administrators to get each one properly set up and
-              approved</li>
-            <li>Built <strong>CI/CD around SQLcl's Project feature</strong>, a capability with almost no documentation
-              at the time, to bring Git-based version control to Oracle APEX's SQL-based application code across
-              environments &mdash; <strong>was the only person on the team who understood the workflow</strong></li>
-            <li>Configured <strong>single sign-on across all three environments using SAML, OAuth 2.0, and
-                OIDC</strong>, alongside ACL-based access control and user-group permissions</li>
-            <li>Set up disaster recovery using <strong>Oracle Data Guard</strong> with a standby database and high
-              availability configuration</li>
-            <li>Wrote an <strong>18-session training program</strong>, later adopted as the team's standard onboarding
-              process</li>
-          </ul>
-        </li>
+        <li>Led a database and infrastructure migration for an internal application: moved it from shared to
+          <strong>independent database, ORDS server, and Oracle APEX workspace</strong> infrastructure</li>
+        <li>Set up real-time data sync using <strong>database links and materialized views</strong>, with
+          scheduled jobs automating refreshes</li>
+        <li>Configured <strong>single sign-on using SAML, OAuth 2.0, and OIDC</strong>, alongside access control
+          and user-group permissions</li>
+        <li>Set up disaster recovery using <strong>Oracle Data Guard</strong> with a standby database and high
+          availability configuration</li>
+        <li>Built <strong>CI/CD for Oracle APEX's SQL-based application code</strong> using SQLcl's Project
+          feature, bringing Git-based version control to that workflow</li>
+        <li><strong>Provisioned three environments</strong>, development, QA, and production, from scratch,
+          coordinating directly with multiple teams and database administrators to get each one properly set up
+          and approved</li>
+        <li>Planned and delivered a <strong>training program</strong> for the team, later adopted as the standard
+          onboarding process</li>
       </ul>
 
       <p class="card-section-head">Cloud Operations</p>
       <ul class="dialog-bullets">
-        <li>Ran <strong>6 master controller release cycles</strong> across development, test, and production</li>
-        <li>Built a <strong>cloud cost optimization dashboard on Oracle APEX</strong> at an internal Oracle hackathon,
-          tracking usage across <strong>more than 100 customer environments</strong></li>
+        <li>Ran multiple <strong>master controller release cycles</strong> across development, test, and
+          production</li>
+        <li>Built a <strong>cloud cost optimization dashboard on Oracle APEX</strong> at an internal Oracle
+          hackathon</li>
       </ul>
 
       <p class="card-section-head">UI team</p>
       <ul class="dialog-bullets">
-        <li>Resolved <strong>60+ front-end defects</strong> across multiple OUAF versions, spanning both the Classic and
-          Redwood interfaces, using <strong>Java and JavaScript</strong></li>
+        <li>Resolved <strong>60+ front-end defects</strong> across an internal platform's Classic and Redwood
+          interfaces, using <strong>Java and JavaScript</strong></li>
       </ul>
     </div>
 
