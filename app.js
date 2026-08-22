@@ -726,7 +726,7 @@ const PROJECTS = [
     techStack: ["C++", "CUDA", "OpenMP", "Nsight Compute", "Python (matplotlib)", "Bash"],
     date: "2026-02",
     dateLabel: "02 · 26",
-    pinned: false,
+    pinned: true,
     blurb: "A GPU-accelerated N-body gravitational simulator comparing sequential, OpenMP, and CUDA implementations, reaching over 100x speedup on a laptop GPU.",
     stamp: "assets/projects/n-body-sim-stamp.png",
     plaque: "N-BODY SIM",
