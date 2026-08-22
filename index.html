@@ -123,7 +123,7 @@
                 d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2.2.5 7.3 5.47a.9.9 0 0 0 1 0L19.8 6H4.2zM20 7.9l-6.98 5.24a2.9 2.9 0 0 1-3.04 0L4 7.9V18h16V7.9z" />
             </svg>
           </a>
-          <a href="https://drive.google.com/file/d/12eBzCWr8MjRhjEzQjstg17dU2d1Aj5jT/view?usp=sharing" id="resumeUtilLink" target="_blank" rel="noopener" aria-label="Resume"
+          <a href="#" id="resumeUtilLink" target="_blank" rel="noopener" aria-label="Resume"
             class="util-link util-link-resume">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round">
@@ -755,16 +755,16 @@
       </ul>
     </div>
 
-    <div class="panel-content" id="panel-ra" data-stop="ra">
+<div class="panel-content" id="panel-ra" data-stop="ra">
       <span class="timeline-eyebrow">Research Assistant &middot; Sep 2026 &ndash; Dec 2026</span>
       <h2>RA, Distributed Systems Laboratory</h2>
-      <p class="timeline-place">Advised by Prof. Munehiro Fukuda</p>
+      <p class="timeline-place">Advised by <a href="https://faculty.washington.edu/mfukuda/" target="_blank" rel="noopener">Prof. Munehiro Fukuda</a></p>
       <p class="timeline-coursework">
-        This is the RA appointment supporting the MASS CUDA thesis work, beginning September 2026. The role centers on
-        the same three open questions the thesis is investigating: whether ghost-space memory holds up against direct
-        inter-GPU access, how different agent collision-avoidance approaches compare, and how MASS CUDA's per-step
-        execution stacks up against FLAME GPU2. This is active, ongoing research, so there isn't a finished result to
-        report yet.
+        This is the RA appointment supporting the MASS CUDA thesis work, beginning September 2026. The role
+        centers on multi-GPU performance optimization for the
+        <a href="https://depts.washington.edu/dslab/" target="_blank" rel="noopener">Distributed Systems
+          Laboratory</a>'s MASS CUDA library. This is active, ongoing research, so there isn't a finished result
+        to report yet.
       </p>
       <a class="scene-link" href="#research" data-goto="research">See the full research write-up &rarr;</a>
     </div>
@@ -799,7 +799,7 @@
       <div class="id-photo">BGK</div>
       <div class="id-name-block">
         <p class="id-name">Bharathi Ganesh Kumar</p>
-        <span class="id-title">CS Grad Student &middot; UW Bothell</span>
+        <span class="id-title">CS Grad Student</span>
       </div>
     </div>
 
@@ -835,7 +835,7 @@
             d="M12 3 1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.11 6L12 12.28 5.89 9 12 5.72 18.11 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z" />
         </svg>
       </a>
-      <a class="id-link id-link-resume" href="https://drive.google.com/file/d/12eBzCWr8MjRhjEzQjstg17dU2d1Aj5jT/view?usp=sharing" id="resumeCardLink" target="_blank" rel="noopener"
+      <a class="id-link id-link-resume" href="#" id="resumeCardLink" target="_blank" rel="noopener"
         aria-label="Download resume">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round">
@@ -859,12 +859,7 @@
         rel="noopener" data-exhibit="adv">Read the paper</a>
       <a class="exp-cert-btn" id="res-link-ocu" href="https://doi.org/10.36548/jsws.2024.4.003" target="_blank"
         rel="noopener" data-exhibit="ocu">Read the paper</a>
-      <a class="exp-cert-btn" id="res-link-massc-core"
-        href="https://bitbucket.org/mass_library_developers/mass_cuda_core/src/main/" target="_blank" rel="noopener"
-        data-exhibit="massc">Core repo</a>
-      <a class="exp-cert-btn" id="res-link-massc-app"
-        href="https://bitbucket.org/mass_application_developers/mass_cuda_appl/src/main/" target="_blank" rel="noopener"
-        data-exhibit="massc">App repo</a>
+
       <button class="exp-dialog-close" id="resDialogClose" aria-label="Close">&times;</button>
     </div>
 
@@ -988,41 +983,26 @@
         <span class="tech-tag">Nsight Compute</span>
       </div>
 
-      <p class="card-section-head">The framework</p>
+<p class="card-section-head">The framework</p>
       <p class="timeline-coursework">
-        MASS CUDA is a general-purpose library for GPU-accelerated agent-based modeling, advised by Prof. Munehiro
-        Fukuda in the Distributed Systems Laboratory at UW Bothell. Agent-based models simulate large numbers of
-        independent agents moving and interacting inside a shared space, useful for anything from wildfire spread
-        to disease modeling to cellular automata like Conway&rsquo;s Game of Life. Its single-GPU foundation
-        already existed, including a <strong>Structure of Arrays memory layout</strong> that cut per-iteration
-        time by over <strong>60%</strong> on the GameOfLife benchmark. Multi-GPU support had also already been
-        built, but as two separate, independently developed implementations that were never merged or tested
-        against each other: one built around <strong>NVLink&rsquo;s unified virtual addressing (UVA)</strong>,
-        letting one GPU read another&rsquo;s memory directly, the other around <strong>NVIDIA&rsquo;s Collective
-          Communication Library (NCCL)</strong> instead.
-      </p>
-
-      <p class="card-section-head">The questions</p>
-      <p class="timeline-coursework">
-        Because those two implementations were never merged or compared, there&rsquo;s no single system to test
-        them against each other on, and open questions from each were left unresolved. Prior work found that
-        maintaining a <strong>ghost place</strong>, a local mirrored copy of a neighboring GPU&rsquo;s boundary
-        data, wasn&rsquo;t always faster than reading that data directly, but only showed this in one benchmark
-        under UVA. The NCCL-based version was never tested on that question at all. Prior work also found that
-        <strong>direction-based agent collision avoidance</strong> outperformed an agent-ID-based approach, but
-        again only on one benchmark. This thesis first merges both implementations into one unified codebase, then
-        uses it to test ghost-space overhead and collision avoidance across more benchmarks and both communication
-        approaches, and works to bring MASS CUDA&rsquo;s per-step execution time in line with <strong>FLAME
-          GPU2</strong>, an established framework in the same space.
+        MASS CUDA is a general-purpose library for GPU-accelerated agent-based modeling, developed in the
+        <a href="https://depts.washington.edu/dslab/" target="_blank" rel="noopener">Distributed Systems
+          Laboratory</a> at UW Bothell, where I work under
+        <a href="https://faculty.washington.edu/mfukuda/" target="_blank" rel="noopener">Prof. Munehiro
+          Fukuda</a>. Agent-based models simulate large numbers of independent agents moving and interacting
+        inside a shared space, useful for anything from wildfire spread to disease modeling to cellular automata
+        like Conway&rsquo;s Game of Life. The library supports both single-GPU and multi-GPU execution. On the
+        multi-GPU side, it supports two communication strategies: <strong>NVLink&rsquo;s unified virtual
+          addressing (UVA)</strong> and <strong>NVIDIA&rsquo;s Collective Communication Library (NCCL)</strong>.
+        My thesis research builds on the multi-GPU side of the library, focused on performance optimization, and
+        includes work on its Clang/LLVM-based translator.
       </p>
 
       <p class="card-section-head">The benchmarks</p>
       <p class="timeline-coursework">
-        Four existing simulations are used to test these questions: <strong>Heat2D</strong> and
-        <strong>GameOfLife</strong>, both cellular automaton-style simulations, and <strong>SugarScape</strong>
-        and <strong>Tuberculosis</strong>, both agent-based simulations involving moving, interacting agents.
-        Porting over a fifth, <strong>Heat3D</strong>, which currently only exists in an older non-GPU version of
-        the library, is a stretch goal.
+        Four existing simulations exist in the library: <strong>Heat2D</strong> and <strong>GameOfLife</strong>,
+        both cellular automaton-style simulations, and <strong>SugarScape</strong> and
+        <strong>Tuberculosis</strong>, both agent-based simulations involving moving, interacting agents.
       </p>
     </div>
   </div>
