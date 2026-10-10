@@ -693,6 +693,57 @@ const PROJECTS = [
     ],
     links: { repo: "https://github.com/BharathiGaneshkumar/gpu-cost-aware-bin-packing-scheduler" }
   },
+    {
+    id: "quantum-pqk",
+    title: "Quantum vs Classical ML on CAR T-Cell Data",
+    tags: ["QUANTUM"],
+    techStack: ["Python", "Qiskit", "Qiskit Runtime", "scikit-learn", "Projected Quantum Kernel", "IBM Quantum (QPU)"],
+    date: "2026-05",
+    dateLabel: "05 · 26",
+    pinned: true,
+    blurb: "Won at the UW x IBM Quantum Machine Learning Hackathon. A projected quantum kernel beat a classical SVM at predicting CAR T-cell cytotoxicity on the held-out test set.",
+    stamp: "assets/projects/quantum-pqk-stamp.png",
+    plaque: "QUANTUM ML",
+    problem: "At the UW x IBM Quantum Machine Learning Hackathon, where the team placed 3rd, we asked whether a quantum kernel can get more out of a small biological dataset than a classical model can. The task was predicting whether a CAR T-cell design (an engineered immune cell used in cancer therapy) shows high or low cytotoxicity, from only 246 labeled designs. A classical SVM was the baseline to beat. With a 74-sample test set, one win or loss can be luck, so the real question is whether any quantum advantage survives proper statistical checks.",
+    approach: [
+      "Built the comparison on IBM's hackathon starter: a classical RBF SVM on 60-dimensional one-hot features against an SVM on a <strong>projected quantum kernel</strong>, using a <strong>ZZFeatureMap on 60 qubits</strong> with X, Y and Z measurements per qubit to produce <strong>180 features</strong> (172 train, 74 test)",
+      "Tuned both models with grid-search cross-validation and compared the two kernels directly with similarity heatmaps and a within-class versus cross-class contrast",
+      "Went past the hackathon's single test split with <strong>repeated and nested cross-validation</strong>, a <strong>McNemar test</strong>, noise injection, motif shuffling, measurement-basis subsets, geometric difference and model complexity metrics, and a logistic regression baseline with additive per-position effects",
+      "Ran a small real-hardware check on IBM's <strong>ibm_marrakesh</strong> through Qiskit Runtime, 4 samples at about 97 seconds of QPU time each, limited by compute budget",
+      "Packaged everything as one reproducible notebook with a README and Apache 2.0 license, keeping IBM's starter cells unchanged"
+    ],
+    result: [
+      "On the 74-sample test split, the quantum kernel scored F1 <strong>0.8108</strong> against <strong>0.7423</strong> for the classical SVM, a <strong>6.9 point lead</strong>",
+      "Under cross-validation the direction flipped: classical led by roughly <strong>4 to 9 F1 points</strong> across grid-search, repeated and nested CV. The McNemar test on the test predictions gave <strong>p = 0.33</strong>, and small amounts of added noise flipped the test gap",
+      "The kernel metrics agree with the CV: a geometric difference of <strong>1.54</strong> and a classical model complexity of <strong>1.36</strong> pointed to no expected advantage, the additive logistic regression matched the classical SVM, and shuffling motifs showed the signal comes mostly from per-position effects. No subset of measurement bases beat the classical model or the full 180 features",
+      "Conclusion: the test-split win does not hold up, and this dataset shows no evidence of a quantum advantage. The project reports that negative result as the finding"
+    ],
+    links: { repo: "https://github.com/BharathiGaneshkumar/quantum-pqk-car-t-hackathon" }
+  },
+  {
+    id: "agentic-bms",
+    title: "Agentic Smart Building Maintenance System",
+    tags: ["AI"],
+    techStack: ["Python", "XGBoost", "SHAP", "LangGraph", "PostgreSQL", "Qdrant", "Jira MCP", "Docker", "Next.js", "Streamlit"],
+    date: "2026-10",
+    dateLabel: "10 · 26",
+    pinned: true,
+    blurb: "A multi-agent system for predictive maintenance and complaint-driven fault resolution in sustainable smart buildings, built on real air handling unit data with explainable fault detection and energy-waste estimates. In progress.",
+    stamp: "assets/projects/agentic-bms-stamp.png",
+    plaque: "AGENTIC BMS",
+    problem: "Smart buildings run on air handling units that degrade and fail, wasting energy and hurting comfort long before anyone notices. Maintenance often reacts to a breakdown or an occupant complaint, and the sensor data that could warn earlier is rarely connected to what occupants report. This project asks whether cooperating agents can detect equipment faults from sensor data and explain why they flagged them, use occupant complaints to catch what the classifier misses and filter out noise, and turn the findings into maintenance actions that account for energy waste. It also tests whether the second agent earns its place, through a single-agent versus two-agent ablation.",
+    approach: [
+      "<strong>Dataset.</strong> A published, expert-labeled set of <strong>20 air handling units</strong> from a real office building: <strong>175,532</strong> hourly readings, labeled normal or one of 4 faults, stored in PostgreSQL. (<a href=\"https://doi.org/10.6084/m9.figshare.27147678.v3\" target=\"_blank\" rel=\"noopener\">Wang et al. 2025, Scientific Data</a>)",
+      "<strong>Split.</strong> Neighboring hourly rows are near-copies and faults can last days, so a random split would leak. Evaluation uses <strong>whole seasonal blocks</strong> (Dec, Mar, Jul, Sep) with <strong>24-hour buffers</strong>, and tuning uses <strong>month-grouped cross-validation</strong>.",
+      "<strong>Model.</strong> Comparing XGBoost, Random Forest, LightGBM, an MLP and logistic regression on per-class F1, then tuning a <strong>5-class XGBoost</strong> with Optuna. <strong>SMOTE</strong> runs inside training folds only, for the rarest class (<strong>117</strong> real rows).",
+      "<strong>Explainability.</strong> <strong>SHAP</strong> shows which sensor readings drove each flagged fault. Those attributions go into the LLM's prompt as evidence, and a self-critique pass checks its reasoning against the top drivers.",
+      "<strong>Predictive agent.</strong> Building a <strong>LangGraph</strong> agent. Tools: recent readings, resolution history, sensor plausibility check, energy price lookup, <strong>Jira MCP</strong> work orders, human-review flag. For each fault it picks a <strong>work order, human review, or log-only</strong>, estimates <strong>energy waste</strong>, and updates the same ticket on re-checks. No equipment control is exposed to the LLM.",
+      "<strong>Complaint agent.</strong> Building a <strong>LangGraph</strong> agent. Tools: SQL fault matching, raw sensor pull, <strong>Qdrant</strong> hybrid search over past complaints. It matches a complaint to a detected fault first, otherwise classifies it as a <strong>missed fault</strong>, a <strong>comfort complaint</strong>, or a watch case, and merges duplicates under one reference code. Complaint text is synthetic.",
+      "<strong>Users.</strong> Building a <strong>Next.js</strong> portal where occupants file complaints and track status by reference code, a second one where technicians work live <strong>Jira</strong> tickets and log resolutions, and a <strong>Streamlit</strong> dashboard with ablation results, SHAP panels, the LLM's reasoning trace, and a review queue."
+    ],
+    result: ["In Progress"],
+    links: { repo: "https://github.com/BharathiGaneshkumar/agentic-bms" }
+  },
   {
     id: "raft-coordinator",
     title: "Fault-Tolerant AI Inference Coordinator",
@@ -885,7 +936,7 @@ const PROJECTS = [
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Auth0", "Prisma", "Neon PostgreSQL", "Gemini API (Gemma 4)", "ElevenLabs"],
     date: "2025-09",
     dateLabel: "09 · 25",
-    pinned: false,
+    pinned: true,
     blurb: "A student housing platform that reads a lease for red flags before you sign it and makes a landlord's reputation impossible to quietly erase.",
     stamp: "assets/projects/dawgden-stamp.png",
     plaque: "DAWGDEN",
@@ -1159,10 +1210,16 @@ if (hotspotLabelsContainer) {
   });
 }
 
+
 // ---------- Rotate-to-landscape prompt ----------
 const rotateOverlay = document.getElementById("rotateOverlay");
+let rotateDismissed = false;
+document.getElementById("rotateSkip")?.addEventListener("click", () => {
+  rotateDismissed = true;
+  rotateOverlay.classList.remove("rotate-visible");
+});
 function checkOrientation() {
-  if (!rotateOverlay) return;
+  if (!rotateOverlay || rotateDismissed) return;
   const isPhoneSized = window.innerWidth <= 900;
   const isPortrait = window.innerHeight > window.innerWidth;
   rotateOverlay.classList.toggle("rotate-visible", isPhoneSized && isPortrait);
@@ -1589,4 +1646,29 @@ document.querySelectorAll(".edu-chip").forEach((chip) => {
     entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("rv-in"); io.unobserve(en.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+})();
+// ---------- One tap: fullscreen + lock to landscape (Android / desktop only) ----------
+(function setupImmersive() {
+  const btn = document.getElementById("rotateGo");
+  if (!btn) return;
+
+  // iPhones/iPads don't support the Fullscreen API, so the button never appears there.
+  const canFullscreen = !!document.documentElement.requestFullscreen;
+  if (!canFullscreen) return;
+  btn.hidden = false;
+
+  btn.addEventListener("click", async (e) => {
+    e.stopPropagation(); // keep the tap-anywhere fullscreen listener from also firing
+    try {
+      await document.documentElement.requestFullscreen();
+      await screen.orientation?.lock?.("landscape");
+    } catch (err) {
+      // If the lock is refused, fullscreen still worked; the visitor just rotates by hand.
+    }
+  });
+
+  // When the visitor leaves fullscreen, release the landscape lock.
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) screen.orientation?.unlock?.();
+  });
 })();
