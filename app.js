@@ -1380,7 +1380,7 @@ const fsCue = document.getElementById("fsCue");
 
 function toggleFullscreen() {
   if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen?.().catch(() => {});
+    document.documentElement.requestFullscreen?.().catch(() => { });
   } else {
     document.exitFullscreen?.();
   }
@@ -1419,3 +1419,174 @@ document.addEventListener(
   },
   { once: true }
 );
+// ============================================================
+// EDUCATION EXTRAS: certifications, designs, anchors
+// ============================================================
+
+// ---- CERTS: add a new certificate = add one line here ----
+// tag = skill tag (top-left of ticket) · cta = "verify" or "view"
+// logo = transparent PNG in assets/certs/ (optional; falls back to the issuer's first letter)
+const CERTS = [
+  { tag: "Quantum", title: "Qiskit Global Summer School 2026 - Quantum Excellence", date: "Aug 2026", issuer: "IBM", logo: "assets/certs/ibm.png", link: "https://www.credly.com/badges/6beaffc4-fc34-40ba-a545-56c7018e7758/public_url", cta: "verify" },
+  { tag: "Quantum", title: "IQM Quantum School", date: "Sep 2026", issuer: "IQM", logo: "assets/certs/iqm.png", link: "https://credsverse.com/credentials/ce0ede21-338f-4a20-be3c-1e374f0017da?preview=1", cta: "verify" },
+  { tag: "Quantum", title: "Mathematical Foundations and Quantum Mechanics Essentials", date: "Dec 2025", issuer: "Coursera", logo: "assets/certs/coursera.png", link: "https://www.coursera.org/account/accomplishments/verify/2G3G8WDWKYU2", cta: "verify" },
+  { tag: "Cloud AI", title: "Oracle Cloud Infrastructure Certified AI Foundations Associate", date: "Feb 2025", issuer: "Oracle", logo: "assets/certs/oracle.png", link: "https://drive.google.com/file/d/1tUy1Dd6TiljKeELmfZDHDJcl_phPfdkU/view?usp=sharing", cta: "view" },
+  { tag: "Node.js", title: "Learning Node.js", date: "May 2023", issuer: "LinkedIn", logo: "assets/certs/linkedin.png", link: "https://drive.google.com/file/d/1RQ16pHg_i18zLz7k9Mb0Bcm350L92GhN/view", cta: "view" },
+  { tag: "Node.js", title: "Node.js Essential Training", date: "May 2023", issuer: "LinkedIn", logo: "assets/certs/linkedin.png", link: "https://drive.google.com/file/d/10OVSAbmN0Tlwc94BbKLBehVm9snl6oTo/view", cta: "view" },
+];
+
+// ---- DESIGNS: add a new poster = add one block ----
+// Single image:   img: "assets/design/x.png"
+// Carousel:       slides: ["assets/design/x/1.png", "assets/design/x/2.png", ...]
+// thumb = optional smaller cover image · pdf = optional "Download PDF" link
+const DESIGNS = [
+  { img: "assets/design/meet-the-board.png", title: "Meet the Board", note: "A comic-style team intro for the WiCyS board.", date: "" },
+  // { slides: ["assets/design/welcome/1.png", "assets/design/welcome/2.png"], title: "Welcome Meeting", note: "Get first-years to the first meeting.", date: "Sep 2026", pdf: "" },
+];
+(function renderCerts() {
+  const grid = document.getElementById("certGrid");
+  if (!grid) return;
+  grid.innerHTML = CERTS.map((c, i) => {
+    const no = String(i + 1).padStart(3, "0");
+    const inner = `
+      <div class="tk">
+        <div class="tk-main">
+          <div class="tk-top"><span>${c.tag}</span><span>No. ${no}</span></div>
+          <div class="tk-name">${c.title}</div>
+          <div class="tk-date">${c.date}</div>
+        </div>
+        <div class="tk-stub">
+          <div class="tk-logo"><img src="${c.logo}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${c.issuer.charAt(0)}'))" /></div>
+          <div class="tk-issuer">${c.issuer}</div>
+          ${c.link ? `<div class="tk-cta">${c.cta} &#8599;</div>` : ""}
+        </div>
+      </div>`;
+    const attrs = `class="tk-wrap rv" style="transition-delay:${i * 70}ms"`;
+    return c.link
+      ? `<a ${attrs} href="${c.link}" target="_blank" rel="noopener">${inner}</a>`
+      : `<div ${attrs}>${inner}</div>`;
+  }).join("");
+})();
+(function setupDesigns() {
+  const openBtn = document.getElementById("designOpen");
+  const dialog = document.getElementById("designDialog");
+  const overlay = document.getElementById("designOverlay");
+  const closeBtn = document.getElementById("designClose");
+  const gridEl = document.getElementById("designGrid");
+  const detailEl = document.getElementById("designDetail");
+  if (!openBtn || !dialog || !overlay || !gridEl || !detailEl) return;
+  const eduScene = document.getElementById("scene-education");
+  let built = false;
+  let cur = { d: null, i: 0 };
+  const slidesOf = (d) => d.slides || [d.img];
+
+  function renderGrid() {
+    gridEl.innerHTML = DESIGNS.map((d, i) => {
+      const s = slidesOf(d);
+      const multi = s.length > 1;
+      return `
+      <button class="design-thumb${multi ? " is-set" : ""}" data-i="${i}" type="button">
+        <span class="design-frame"><img src="${d.thumb || s[0]}" alt="${d.title}" loading="lazy" />${multi ? `<span class="design-count">${s.length} slides</span>` : ""}</span>
+        <span class="design-fig">Fig. ${String(i + 1).padStart(2, "0")}</span>
+        <span class="design-name">${d.title}</span>
+        ${d.date ? `<span class="design-date">${d.date}</span>` : ""}
+      </button>`;
+    }).join("");
+  }
+
+  function showSlide(n) {
+    const s = slidesOf(cur.d);
+    cur.i = (n + s.length) % s.length;
+    detailEl.querySelector(".sl-img").src = s[cur.i];
+    const count = detailEl.querySelector(".sl-count");
+    if (count) count.textContent = `${cur.i + 1} / ${s.length}`;
+    detailEl.querySelectorAll(".sl-dot").forEach((dot, k) => dot.classList.toggle("on", k === cur.i));
+    if (s.length > 1) [cur.i + 1, cur.i - 1].forEach((k) => { new Image().src = s[(k + s.length) % s.length]; });
+  }
+
+  function showDetail(i) {
+    const d = DESIGNS[i];
+    const s = slidesOf(d);
+    const multi = s.length > 1;
+    cur = { d, i: 0 };
+    detailEl.innerHTML = `
+      <button class="design-back" type="button">&larr; All designs</button>
+      <div class="sl-stage">
+        ${multi ? `<button class="sl-nav sl-prev" type="button" aria-label="Previous slide">&#8249;</button>` : ""}
+        <img class="sl-img" src="${s[0]}" alt="${d.title}" />
+        ${multi ? `<button class="sl-nav sl-next" type="button" aria-label="Next slide">&#8250;</button>` : ""}
+      </div>
+      ${multi ? `<div class="sl-bar"><span class="sl-count"></span><span class="sl-dots">${s.map((_, k) => `<button class="sl-dot" data-k="${k}" type="button" aria-label="Slide ${k + 1}"></button>`).join("")}</span></div>` : ""}
+      <h3>${d.title}</h3>
+      ${d.date ? `<span class="design-date">${d.date}</span>` : ""}
+      <p>${d.note}</p>
+      ${d.pdf ? `<a class="design-pdf" href="${d.pdf}" target="_blank" rel="noopener">Download PDF &darr;</a>` : ""}`;
+    showSlide(0);
+    dialog.classList.add("show-detail");
+    dialog.scrollTop = 0;
+  }
+  function showGrid() { cur.d = null; dialog.classList.remove("show-detail"); dialog.scrollTop = 0; }
+
+  function open() {
+    if (!built) { renderGrid(); built = true; }
+    showGrid();
+    dialog.classList.add("exp-dialog-open");
+    dialog.setAttribute("aria-hidden", "false");
+    overlay.classList.add("exp-overlay-visible");
+    eduScene?.classList.add("scene-scroll-locked");
+  }
+  function close() {
+    dialog.classList.remove("exp-dialog-open");
+    dialog.setAttribute("aria-hidden", "true");
+    overlay.classList.remove("exp-overlay-visible");
+    eduScene?.classList.remove("scene-scroll-locked");
+  }
+
+  gridEl.addEventListener("click", (e) => {
+    const t = e.target.closest(".design-thumb");
+    if (t) showDetail(Number(t.dataset.i));
+  });
+  detailEl.addEventListener("click", (e) => {
+    if (e.target.closest(".design-back")) return showGrid();
+    if (!cur.d) return;
+    if (e.target.closest(".sl-prev")) showSlide(cur.i - 1);
+    else if (e.target.closest(".sl-next")) showSlide(cur.i + 1);
+    else if (e.target.closest(".sl-dot")) showSlide(Number(e.target.closest(".sl-dot").dataset.k));
+  });
+
+  // swipe on touch screens
+  let tx = null;
+  detailEl.addEventListener("touchstart", (e) => { tx = e.touches[0].clientX; }, { passive: true });
+  detailEl.addEventListener("touchend", (e) => {
+    if (tx === null || !cur.d || slidesOf(cur.d).length < 2) { tx = null; return; }
+    const dx = e.changedTouches[0].clientX - tx;
+    tx = null;
+    if (Math.abs(dx) > 45) showSlide(cur.i + (dx < 0 ? 1 : -1));
+  });
+
+  openBtn.addEventListener("click", open);
+  openBtn.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  closeBtn?.addEventListener("click", close);
+  overlay.addEventListener("click", close);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+    if (cur.d && dialog.classList.contains("exp-dialog-open")) {
+      if (e.key === "ArrowRight") showSlide(cur.i + 1);
+      if (e.key === "ArrowLeft") showSlide(cur.i - 1);
+    }
+  });
+})();
+// ---- Anchor chips (Degrees / Certifications / Beyond) ----
+document.querySelectorAll(".edu-chip").forEach((chip) => {
+  chip.addEventListener("click", () => {
+    document.getElementById(chip.dataset.target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+// ---- Fade-up reveal for tickets as they scroll into view ----
+(function setupReveal() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("rv-in"); io.unobserve(en.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+})();

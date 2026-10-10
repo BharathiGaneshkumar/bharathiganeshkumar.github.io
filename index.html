@@ -24,11 +24,12 @@
 
   <div class="leaf-layer" id="leafLayer" aria-hidden="true"></div>
   <button id="fullscreenBtn" class="fs-btn" aria-label="Toggle fullscreen" type="button">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-  </svg>
-</button>
-<div class="fs-cue" id="fsCue">Tap for fullscreen</div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+    </svg>
+  </button>
+  <div class="fs-cue" id="fsCue">Tap for fullscreen</div>
   <!-- Rotate-to-landscape prompt: only shown on narrow portrait phones,
      auto-hides the instant the device rotates. -->
   <div class="rotate-overlay" id="rotateOverlay" aria-hidden="true">
@@ -124,8 +125,8 @@
                 d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2.2.5 7.3 5.47a.9.9 0 0 0 1 0L19.8 6H4.2zM20 7.9l-6.98 5.24a2.9 2.9 0 0 1-3.04 0L4 7.9V18h16V7.9z" />
             </svg>
           </a>
-          <a href="https://drive.google.com/file/d/1cGn2hmLDZWJzhBNSNYcSKtN6_QHDLiJr/view?usp=sharing" id="resumeUtilLink" target="_blank" rel="noopener" aria-label="Resume"
-            class="util-link util-link-resume">
+          <a href="https://drive.google.com/file/d/1cGn2hmLDZWJzhBNSNYcSKtN6_QHDLiJr/view?usp=sharing"
+            id="resumeUtilLink" target="_blank" rel="noopener" aria-label="Resume" class="util-link util-link-resume">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -134,7 +135,7 @@
             </svg>
             Resume
           </a>
-       
+
         </div>
 
         <div class="hero-status-pill">
@@ -154,9 +155,21 @@
 
     <!-- ===================== EDUCATION SCENE (1 world-width to the right) ===================== -->
     <section class="scene" id="scene-education" data-scene="education" style="--sx: -1.6; --sy: 1.6;">
-      <header class="section-hero">
-        <h1>Education</h1>
+      <nav class="edu-anchors" aria-label="Jump to section">
+        <button class="edu-chip" data-target="edu-degrees" type="button">Degrees</button>
+        <button class="edu-chip" data-target="edu-certs" type="button">Certifications</button>
+        <button class="edu-chip" data-target="edu-beyond" type="button">Giving back</button>
+      </nav>
+
+      <header class="section-hero edu-hero">
+        <h1>The Learning Wing</h1>
       </header>
+
+      <div class="edu-title edu-title-first" id="edu-degrees">
+        <span class="edu-eyebrow">&#10022; Degrees</span>
+        <h2>Where it started</h2>
+        <div class="edu-rule"></div>
+      </div>
 
       <main class="timeline-wrap">
         <div class="timeline-spine" aria-hidden="true"></div>
@@ -203,9 +216,6 @@
             <p class="timeline-coursework">
               Coursework: High-Performance Computing, Distributed Systems, Deep Learning, Machine Learning
             </p>
-            <p class="timeline-activity">
-              Club Engagement Coordinator, WiCyS UW Bothell (Women in Cybersecurity) &middot; 2026&ndash;2027
-            </p>
           </div>
           <div class="timeline-illustration">
             <div class="journey-pin pin-drop" aria-hidden="true"><span class="pin-label">USA</span></div>
@@ -218,6 +228,58 @@
           </div>
         </div>
       </main>
+      <section class="edu-extras">
+        <div class="edu-title" id="edu-certs">
+          <span class="edu-eyebrow">&#10022; Certifications</span>
+          <h2>Collected along the way</h2>
+          <div class="edu-rule"></div>
+        </div>
+        <div class="cert-grid" id="certGrid"></div>
+
+        <div class="edu-title" id="edu-beyond">
+          <span class="edu-eyebrow">&#10022; Community</span>
+          <h2>Giving back</h2>
+          <div class="edu-rule"></div>
+        </div>
+
+        <div class="beyond-grid">
+          <article class="beyond-card">
+            <div class="band">
+              <img class="band-img" src="assets/beyond/temple.png"
+                alt="Illustration of a South Indian temple with sun rays" loading="lazy" />
+              <span class="band-letter" aria-hidden="true">&#2949;</span>
+            </div>
+            <div class="beyond-body">
+              <span class="beyond-eyebrow">Volunteering &middot; Oct 2026 &ndash; Present</span>
+              <h3>Volunteer Tamil Teacher</h3>
+              <span class="beyond-org">Bharathi Tamil Academy &middot; Redmond, WA</span>
+              <span class="beyond-quote">Tamil is the language I grew up reading, writing, and winning school prizes in.
+                Now I get to pass it on.</span>
+              <span class="beyond-text">I teach Tamil reading and writing to children of the Tamil diaspora at a
+                volunteer-run nonprofit school, helping kids in our community read, write, and love the language.</span>
+              <a class="beyond-link" href="https://www.btaredmond.org/" target="_blank" rel="noopener">Visit
+                btaredmond.org &#8599;</a>
+            </div>
+          </article>
+
+          <div class="beyond-card beyond-card-click" id="designOpen" role="button" tabindex="0">
+            <div class="band">
+              <img class="band-img" src="assets/beyond/dubs.png" alt="Dubs, the UW mascot, at a laptop"
+                loading="lazy" />
+            </div>
+            <div class="beyond-body">
+              <span class="beyond-eyebrow">Club &middot; Sep 2026 &ndash; Present</span>
+              <h3>Engagement Coordinator</h3>
+              <span class="beyond-org">WiCyS (Women in Cybersecurity) &middot; UW Bothell</span>
+              <span class="beyond-text">I run the visual side of WiCyS at UW Bothell, from recruitment posters to social
+                media graphics. I wanted cybersecurity to feel less intimidating and more welcoming, and design turned
+                out to be a fun way to do it. I get to experiment, give our posters some personality, and hopefully make
+                someone curious enough to stop by and say hi.</span>
+              <span class="beyond-link">View my designs &rarr;</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
 
     <!-- ===================== RESEARCH SCENE ===================== -->
@@ -599,7 +661,8 @@
       <ul class="dialog-bullets">
         <li>Revamped a legacy internal knowledge base: migrated content to a <strong>MoinMoin wiki</strong>,
           configured an <strong>Nginx reverse proxy</strong>, and automated broken-link detection using
-          <strong>Python</strong>, fixing more than <strong>500</strong> broken links</li>
+          <strong>Python</strong>, fixing more than <strong>500</strong> broken links
+        </li>
         <li>Implemented <strong>access control permissions</strong> so different teams could see only the pages
           relevant to their own work, and authored usage documentation</li>
       </ul>
@@ -615,7 +678,8 @@
       <p class="card-section-head">OUAF UI team</p>
       <ul class="dialog-bullets">
         <li>Resolved <strong>60+ front-end defects</strong> across OUAF's Classic and Redwood interfaces using
-          <strong>JavaScript and Java</strong></li>
+          <strong>JavaScript and Java</strong>
+        </li>
       </ul>
     </div>
 
@@ -650,9 +714,9 @@
         <span class="tech-tag">Jira</span>
       </div>
 
-<p class="timeline-coursework">
-        Continued working on the Infrastructure Industries Global Industry Unit (IGIU), 
-          <a href="https://www.oracle.com/in/utilities/" target="_blank" rel="noopener">Energy and Water Division</a>, on
+      <p class="timeline-coursework">
+        Continued working on the Infrastructure Industries Global Industry Unit (IGIU),
+        <a href="https://www.oracle.com/in/utilities/" target="_blank" rel="noopener">Energy and Water Division</a>, on
         the <a href="https://docs.oracle.com/en/industries/utilities/framework/264/sdk-dev-guide/index.html"
           target="_blank" rel="noopener">Oracle Utilities Application Framework (OUAF)</a> Platform team, a Java-based
         development platform used to build and manage enterprise utility solutions such as customer care, billing, and
@@ -662,7 +726,8 @@
       <p class="card-section-head">Internal infrastructure migration</p>
       <ul class="dialog-bullets">
         <li>Led a database and infrastructure migration for an internal application: moved it from shared to
-          <strong>independent database, ORDS server, and Oracle APEX workspace</strong> infrastructure</li>
+          <strong>independent database, ORDS server, and Oracle APEX workspace</strong> infrastructure
+        </li>
         <li>Set up real-time data sync using <strong>database links and materialized views</strong>, with
           scheduled jobs automating refreshes</li>
         <li>Configured <strong>single sign-on using SAML, OAuth 2.0, and OIDC</strong>, alongside access control
@@ -721,10 +786,11 @@
       </ul>
     </div>
 
-<div class="panel-content" id="panel-ra" data-stop="ra">
+    <div class="panel-content" id="panel-ra" data-stop="ra">
       <span class="timeline-eyebrow">Research Assistant &middot; Sep 2026 &ndash; Dec 2026</span>
       <h2>RA, Distributed Systems Laboratory</h2>
-      <p class="timeline-place">Advised by <a href="https://faculty.washington.edu/mfukuda/" target="_blank" rel="noopener">Prof. Munehiro Fukuda</a></p>
+      <p class="timeline-place">Advised by <a href="https://faculty.washington.edu/mfukuda/" target="_blank"
+          rel="noopener">Prof. Munehiro Fukuda</a></p>
       <p class="timeline-coursework">
         This is the RA appointment supporting the MASS CUDA thesis work, beginning September 2026. The role
         centers on multi-GPU performance optimization for the
@@ -801,8 +867,9 @@
             d="M12 3 1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.11 6L12 12.28 5.89 9 12 5.72 18.11 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z" />
         </svg>
       </a>
-      <a class="id-link id-link-resume" href="https://drive.google.com/file/d/1cGn2hmLDZWJzhBNSNYcSKtN6_QHDLiJr/view?usp=sharing" id="resumeCardLink" target="_blank" rel="noopener"
-        aria-label="Download resume">
+      <a class="id-link id-link-resume"
+        href="https://drive.google.com/file/d/1cGn2hmLDZWJzhBNSNYcSKtN6_QHDLiJr/view?usp=sharing" id="resumeCardLink"
+        target="_blank" rel="noopener" aria-label="Download resume">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -949,7 +1016,7 @@
         <span class="tech-tag">Nsight Compute</span>
       </div>
 
-<p class="card-section-head">The framework</p>
+      <p class="card-section-head">The framework</p>
       <p class="timeline-coursework">
         MASS CUDA is a general-purpose library for GPU-accelerated agent-based modeling, developed in the
         <a href="https://depts.washington.edu/dslab/" target="_blank" rel="noopener">Distributed Systems
@@ -971,6 +1038,17 @@
         <strong>Tuberculosis</strong>, both agent-based simulations involving moving, interacting agents.
       </p>
     </div>
+  </div>
+  <div class="exp-overlay" id="designOverlay"></div>
+  <div class="exp-dialog design-dialog" id="designDialog" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="exp-dialog-actions">
+      <button class="exp-dialog-close" id="designClose" aria-label="Close">&times;</button>
+    </div>
+    <div id="designGridView">
+      <h2 class="design-heading">WiCyS designs</h2>
+      <div class="design-grid" id="designGrid"></div>
+    </div>
+    <div id="designDetail" class="design-detail"></div>
   </div>
 
   <script src="app.js"></script>
