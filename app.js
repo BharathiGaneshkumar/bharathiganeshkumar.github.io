@@ -1672,3 +1672,34 @@ document.querySelectorAll(".edu-chip").forEach((chip) => {
     if (!document.fullscreenElement) screen.orientation?.unlock?.();
   });
 })();
+// ---------- About Me newspaper: counter + links ----------
+(function setupNewspaperScrap() {
+  const counter = document.getElementById("nsCounter");
+  if (counter) {
+    const io = new IntersectionObserver(([en]) => {
+      if (!en.isIntersecting) return;
+      io.disconnect();
+      const t0 = performance.now(), D = 1400;
+      (function tick(now) {
+        const p = Math.min((now - t0) / D, 1);
+        counter.textContent = Math.round(700 * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    }, { threshold: 0.6 });
+    io.observe(counter);
+  }
+
+  document.querySelectorAll(".ns-go").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      const id = el.dataset.project;
+      if (id && typeof PROJECTS !== "undefined" && PROJECTS.some((p) => p.id === id)) {
+        openProjectDialog(id);
+      } else if (id) {
+        goToScene("projects");
+      } else if (el.dataset.goto) {
+        goToScene(el.dataset.goto);
+      }
+    });
+  });
+})();

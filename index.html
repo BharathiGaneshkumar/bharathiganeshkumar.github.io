@@ -445,133 +445,174 @@
     </section>
 
     <!-- ===================== PERSONAL INTEREST SCENE ===================== -->
-    <section class="scene" id="scene-interest" data-scene="interest" style="--sx: 0; --sy: -1.6;">
-      <header class="section-hero">
-        <h1>Hi! A Little About Me</h1>
-      </header>
+<section class="scene" id="scene-interest" data-scene="interest" style="--sx: 0; --sy: -1.6;">
+  <nav class="edu-anchors" aria-label="Jump to section">
+    <button class="edu-chip" data-target="np-history" type="button">History</button>
+    <button class="edu-chip" data-target="np-science" type="button">Science</button>
+    <button class="edu-chip" data-target="np-tech" type="button">Technology</button>
+    <button class="edu-chip" data-target="np-backstage" type="button">Backstage</button>
+  </nav>
 
-      <main class="interest-wrap">
+  <article class="ns-paper">
+    <header class="ns-mast">
+      <div class="ns-ticker"><span>Extra</span>Curiosity levels critical &middot; Museum now open</div>
+      <h1 class="ns-title">The Curiosity Times</h1>
+      <div class="ns-dateline"><span>Museum Edition</span><span>University of Washington</span><span>Price: one open tab</span></div>
+    </header>
 
-        <div class="interest-prose">
-          <p>I've always been drawn to things that make you question what you think you know.</p>
-          <p>I'm a CS grad student at the <strong>University of Washington</strong>. Most of the time, I'm building
-            things from scratch, breaking them, fixing them, and then wondering why I decided to do that in the first
-            place.</p>
-          <p>Outside of CS, I'm a huge <strong class="accent-terracotta">history and archaeology nerd</strong>. Ancient
-            civilizations, old ruins, historical fiction, figuring out what people were doing thousands of years ago
-            when they had absolutely no idea we'd be digging them up later. I'm also fascinated by <em>mythology</em>,
-            especially the way people have used stories to explain things they couldn't explain otherwise.</p>
+    <!-- ============ FRONT PAGE ============ -->
+    <section class="ns-lead">
+      <div class="ns-lead-top">
+        <figure class="ns-pol ns-sway" style="--r:-4deg">
+          <span class="ns-pin"></span>
+          <img src="assets/interest/cherry-blossom.jpg" alt="First UW cherry blossom" loading="lazy" />
+          <figcaption>yup! that's my first UW cherry blossom<br>POV: the campus brochure worked</figcaption>
+        </figure>
+        <div class="ns-lead-head">
+          <p class="ns-kicker">Front page</p>
+          <h2 class="ns-pull">I've always been drawn to the edges of what we know.</h2>
         </div>
-
-        <div class="pair-row">
-          <div class="pair-photo-col">
-            <figure class="polaroid tilt-right">
-              <span class="polaroid-pin" aria-hidden="true"></span>
-              <img class="polaroid-photo" src="assets/interest/cherry-blossom.jpg" alt="First UW cherry blossom"
-                loading="lazy" />
-              <figcaption>yup! that's my first UW cherry blossom<br>POV: the campus brochure worked</figcaption>
-            </figure>
-          </div>
-          <div class="pair-content-col">
-            <p class="pull-quote">So if you're wondering why a tech portfolio looks like a museum&hellip; yes, it is
-              intentional.</p>
-          </div>
-        </div>
-
-        <div class="interest-prose">
-          <p>Then there's the other side of my brain: <strong class="accent-terracotta">sci-fi</strong>, <strong>quantum
-              physics</strong>, and <em class="accent-terracotta">particle physics</em>. I love the weird places where
-            myth and science start sounding suspiciously similar, where the boundaries get blurry and you're left
-            wondering where imagination ends and reality begins. I also like torturing my brain with questions that
-            cause a minor <em>existential crisis</em> and mess with our basic understanding of reality. This is,
-            unfortunately, how I ended up interested in quantum physics.</p>
-          <p>I didn't want it to stay in the <em class="accent-terracotta">"this is really cool at 2 a.m."</em>
-            category, so I started actually doing something with it.</p>
-        </div>
-
-        <div class="pair-row">
-          <div class="pair-photo-col">
-            <figure class="polaroid tilt-left">
-              <span class="polaroid-pin" aria-hidden="true"></span>
-              <img class="polaroid-photo" src="assets/interest/quantum-hackathon.jpeg"
-                alt="UW x IBM Quantum Hackathon team" loading="lazy" />
-              <figcaption>that's us at the UW &times; IBM Quantum Hackathon<br>3rd place</figcaption>
-            </figure>
-          </div>
-          <div class="pair-content-col">
-            <div class="qt-stack">
-              <div class="qt-card">
-                <span class="qt-card-label">Quantum Computing for Everyone</span>
-                <span class="qt-card-sub">Chris Bernhardt &middot; where it started</span>
-                <p class="qt-card-body">The book that made superposition and entanglement click without needing a
-                  physics degree first.</p>
-              </div>
-              <div class="qt-card qt-card-hackathon">
-                <span class="qt-card-label">UW &times; IBM Quantum Hackathon</span>
-                <span class="qt-card-sub">3rd place</span>
-                <p class="qt-card-body">Explored whether quantum data encoding could actually help machine learning,
-                  using IBM's Projected Quantum Kernel to predict CAR T-cell cytotoxicity. Quantum encoding
-                  <strong>outperformed classical ML on unseen data</strong>, but that advantage got harder to realize
-                  with smaller training sets, a pattern the team called the <strong>Dimensionality Paradox</strong>. The
-                  quantum kernel computations ran on a real IBM QPU via Qiskit Runtime, not just a simulator.
-                </p>
-              </div>
-              <div class="qt-card">
-                <span class="qt-card-label">QGSS 2026</span>
-                <span class="qt-card-sub">IBM Qiskit Global Summer School</span>
-                <p class="qt-card-body">Completed IBM Research's full lab series, from basic circuit building through
-                  noise modeling, error mitigation, and quantum advantage benchmarking.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p class="interest-aside">And when I'm not doing any of that, I'm probably <strong
-            class="accent-terracotta">reading</strong>. History, sci-fi, historical fiction, web novels,
-          fanfiction&hellip; my reading list has never heard of the concept of sticking to one genre.</p>
-
-      </main>
-
-      <main class="madethis-wrap">
-
-        <header class="section-hero" style="padding-top:0;">
-          <h1 style="font-size:clamp(1.5rem,3.5vw,2.2rem);">A Little BTS</h1>
-        </header>
-
-        <div class="interest-prose">
-          <p>The idea for the website started with my obsession with <strong class="accent-terracotta">isometric
-              buildings</strong> on webpages. I wanted my portfolio to feel less like a portfolio and more like a little
-            world that actually says something about me.</p>
-          <p>So naturally, I made a museum.</p>
-        </div>
-
-
-        <div class="confession-block">
-          <p>All my pictures are just floating on a diagonal isometric grid. Yes, deliberate choice of design to make
-            them look fancy.</p>
-          <p>Apparently, my eyes acquired OCD for the pictures in this website. <strong>Oh oh. Wrong combo!!!</strong>
-            Had me crying at 3am in the morning.</p>
-          <p>I've moved some pictures around approximately <strong>700 times</strong>. Some are still not in the right
-            place. <em>Slightly</em> out of place by a few pixels!!!</p>
-        </div>
-
-        <div class="pair-row">
-          <div class="pair-content-col">
-            <p class="closing-line">But honestly? I loved making every bit of it. Even the parts that made me question
-              my life choices.</p>
-            <p class="closing-line">Anyway, welcome to my little corner of the internet!!!</p>
-          </div>
-          <div class="pair-photo-col">
-            <figure class="polaroid tilt-right">
-              <span class="polaroid-pin" aria-hidden="true"></span>
-              <img class="polaroid-photo" src="assets/interest/candid.jpg" alt="Awkward candid photo" loading="lazy" />
-              <figcaption>awkward candid pt. 3678</figcaption>
-            </figure>
-          </div>
-        </div>
-
-      </main>
+      </div>
+      <div class="ns-who">
+        <p>Sometimes that's the distant past. Ancient civilisations, lost worlds, and the stories people told to explain the things they couldn't understand. Other times, it's quantum physics, alternate realities, and ideas that make you question whether you understand reality at all.</p>
+        <p>I'm a <strong>grad student at the University of Washington, doing my <span class="ns-mk">master's thesis in GPU systems</span></strong>. My curiosity has a habit of getting out of hand. Anyway, welcome to the museum.</p>
+      </div>
     </section>
+
+    <!-- ============ HISTORY ============ -->
+    <div class="ns-banner" id="np-history"><span>Exhibit 01</span><b>History</b></div>
+    <h3 class="ns-h3">Ancient Tamil Kingdoms Still Delivering Betrayal, Sources Confirm</h3>
+    <p class="ns-hl">&ldquo;enough betrayal to make modern politics look boring&rdquo;</p>
+    <div class="ns-flow">
+      <div class="ns-cork" aria-label="Six Tamil historical novels">
+        <div class="ns-tag ns-sway">Ponniyin Selvan</div>
+        <div class="ns-tag ns-sway">Sivagamiyin Sabatham</div>
+        <div class="ns-tag ns-sway">Parthiban Kanavu</div>
+        <div class="ns-tag ns-sway">Kadal Pura</div>
+        <div class="ns-tag ns-sway">Yavana Rani</div>
+        <div class="ns-tag ns-sway">Mannan Magal</div>
+        <div class="ns-note">I have a type, apparently.</div>
+      </div>
+      <p class="ns-p">Ancient Tamil kingdoms, royal drama, and <span class="ns-mk">enough betrayal</span> to make modern politics look boring.</p>
+      <p class="ns-p">Mythology, ancient ruins, archaeology. I just want to know what happened and what people believed, people trying to make sense of things they couldn't explain.</p>
+      <p class="ns-p">And I really like the nuances of <span class="ns-mk">ancient architecture</span>.</p>
+      <div class="ns-scrap">
+        <span class="ns-tape"></span>
+        <p class="ns-p">Also a Dan Brown fan. <span class="ns-book">The Da Vinci Code</span><span class="ns-book">Inferno</span><span class="ns-book">Angels & Demons</span></p>
+        <p class="ns-p">Give me history, science, <span class="ns-circ">a suspicious clue</span>, and I'll be opening <span class="ns-mk">seventeen tabs</span> to figure out what's real.</p>
+      </div>
+    </div>
+
+    <!-- ============ SCIENCE ============ -->
+    <div class="ns-banner" id="np-science"><span>Exhibit 02</span><b>Science &amp; Reality</b></div>
+    <h3 class="ns-h3">Reality Under Review: Subject Was Not Watching <em>Dark</em> Casually</h3>
+    <p class="ns-hl">&ldquo;At this point, I should know better.&rdquo;</p>
+    <div class="ns-shows">
+      <div class="ns-stub" style="--r:-1.6deg">
+        <b>Dark</b>
+        <span class="ns-concept">Exotic matter, time loops, bootstrap paradoxes</span>
+        <p>I was not watching that show casually</p>
+      </div>
+      <div class="ns-stub" style="--r:1.4deg">
+        <b>Devs</b>
+        <span class="ns-concept">Hugh Everett's many-worlds interpretation</span>
+        <p>One universe? Apparently not enough</p>
+      </div>
+      <div class="ns-stub ns-stub-wide" style="--r:-.6deg">
+        <b>Dark Matter</b>
+        <span class="ns-concept">Many-worlds, macroscopic entanglement</span>
+        <p><strong>S1E7:</strong> that perfect Chicago? Sign me up, I'd never leave</p>
+        <p><strong>S2E6:</strong> Jason explains macroscopic entanglement, and my brain went <span class="ns-stamp">WAIT</span></p>
+      </div>
+      <div class="ns-stub" style="--r:1.2deg">
+        <b>Pantheon</b>
+        <span class="ns-concept">Uploaded minds</span>
+        <p>That last season. I'm still processing</p>
+      </div>
+      <div class="ns-stub" style="--r:-1.3deg">
+        <b>Predestination</b>
+        <span class="ns-concept">Bootstrap paradox</span>
+        <p>Another bootstrap paradox</p>
+      </div>
+    </div>
+    <div class="ns-corner">
+      <div class="ns-clip">
+        <span class="ns-tape"></span>
+        <span class="ns-clip-lab">Reader's corner</span>
+        <p class="ns-p">I read web novels and fanfiction, too. One fic explained the block universe and Einstein-Rosen bridges with a river, a boat ramp, and a shoreline. <span class="ns-circ">Chapter 8.</span> You're welcome.</p>
+      </div>
+      <a class="ns-fic ns-sway" style="--r:2deg" href="https://archiveofourown.org/works/71789316" target="_blank" rel="noopener">
+        <span class="ns-pin"></span>
+        <b>Closing Walls and Ticking Clocks</b>
+        <span>by annie_vi</span>
+        <em>Read it &#8599;</em>
+      </a>
+    </div>
+
+    <!-- ============ TECHNOLOGY ============ -->
+    <div class="ns-banner" id="np-tech"><span>Exhibit 03</span><b>Technology</b></div>
+    <h3 class="ns-h3">Team Takes 3rd at UW &times; IBM Quantum Hackathon, Runs Circuit on Real Quantum Hardware</h3>
+    <p class="ns-hl">&ldquo;Slightly more productive than yelling at my TV.&rdquo;</p>
+    <div class="ns-flow">
+      <figure class="ns-bigpol ns-sway" style="--r:3deg">
+        <span class="ns-tape"></span>
+        <span class="ns-medal">3rd</span>
+        <img src="assets/interest/quantum-hackathon.jpeg" alt="UW x IBM Quantum Hackathon team" loading="lazy" />
+        <figcaption>that's us at the UW &times; IBM Quantum Hackathon<br>3rd place</figcaption>
+      </figure>
+      <p class="ns-p">Turns out, I wanted to do more than watch other people mess with physics.</p>
+      <p class="ns-p">At the UW &times; IBM Quantum Hackathon 2026, my team took <span class="ns-mk">third place</span>. We explored using IBM's Projected Quantum Kernel to predict CAR T-cell cytotoxicity, with the quantum kernel computations running on a <span class="ns-mk">real IBM quantum computer</span>. Quantum encoding outperformed classical ML on unseen data, but that advantage got harder to realize with smaller training sets, a pattern the team called the <span class="ns-circ">Dimensionality Paradox</span>.</p>
+      <p class="ns-p">Now there are quantum circuits and actual hardware involved.</p>
+      <button class="ns-go" data-project="ibm-quantum-hackathon" type="button">Read the full project &rarr;</button>
+    </div>
+    <div class="ns-pinrow">
+      <div class="ns-index">
+        <h4>The facts</h4>
+        <dl>
+          <dt>Event</dt><dd>UW &times; IBM Quantum Hackathon 2026</dd>
+          <dt>Placing</dt><dd>3rd place</dd>
+          <dt>Method</dt><dd>IBM's Projected Quantum Kernel</dd>
+          <dt>Task</dt><dd>Predicting CAR T-cell cytotoxicity</dd>
+          <dt>Hardware</dt><dd>A real IBM quantum computer</dd>
+          <dt>Result</dt><dd>Quantum encoding beat classical ML on unseen data</dd>
+        </dl>
+      </div>
+      <div class="ns-receipts">
+        <span class="ns-rec-lab">Receipts</span>
+        <div class="ns-rec-grid">
+          <button class="ns-badge ns-go" data-goto="education" type="button" style="--r:-2deg"><b>Qiskit Global Summer School 2026</b><span>Completed, plus the Quantum Excellence badge.</span></button>
+          <button class="ns-badge ns-go" data-goto="education" type="button" style="--r:1.6deg"><b>IQM Quantum School</b><span>Completed.</span></button>
+          <button class="ns-badge ns-go" data-goto="education" type="button" style="--r:-1deg"><b>Mathematical Foundations and Quantum Mechanics Essentials</b><span>Completed on Coursera.</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BACKSTAGE ============ -->
+    <div class="ns-banner" id="np-backstage"><span>Behind the museum</span><b>Backstage</b></div>
+    <h3 class="ns-h3">Editor Confesses: Museum Was Built on Purpose</h3>
+    <p class="ns-hl">&ldquo;So if you're wondering why a tech portfolio looks like a museum&hellip; yes, it is intentional.&rdquo;</p>
+    <div class="ns-flow">
+      <figure class="ns-bigpol ns-bigpol-crooked ns-sway" style="--r:-5deg">
+        <span class="ns-tape"></span>
+        <img src="assets/interest/candid.jpg" alt="Awkward candid photo" loading="lazy" />
+        <figcaption>awkward candid pt. 3678</figcaption>
+        <span class="ns-sticky">still off by a few pixels</span>
+      </figure>
+      <p class="ns-p">I started with an obsession with <span class="ns-mk">isometric buildings</span> on webpages and somehow ended up building a whole museum for my portfolio.</p>
+      <p class="ns-p">I'm a perfectionist, but only about things I can see. Great personality trait for web design.</p>
+      <p class="ns-p">I've moved pictures around approximately <span class="ns-circ">700 times</span>. Some are probably still in the wrong place. My cloudy brain refuses to provide coordinates.</p>
+      <div class="ns-backrow">
+        <div class="ns-count"><span id="nsCounter">0</span><em>pictures moved</em></div>
+        <div class="ns-clip ns-corr">
+          <span class="ns-tape"></span>
+          <span class="ns-clip-lab">Corrections</span>
+          <p class="ns-p">An earlier edition stated that all pictures were in the correct position. They were not.</p>
+        </div>
+      </div>
+    </div>
+    <p class="ns-signoff">Would I do it all again? Unfortunately, yes. I had way too much fun making this.</p>
+  </article>
+</section>
 
     <!-- Remaining scene (contact) gets added
        here the same way: a <section class="scene" data-scene="..."> with
